@@ -41,19 +41,26 @@ public class TadCandidato {
         } else {
             Celula aux = head.prox;
             long j = 0;
-            
+
             while (aux.prox != null && j < i) {
                 aux = aux.prox;
                 j++;
             }
-            
+
             if (aux == tail) {
                 throw new IllegalArgumentException("Indice inválido, favor "
-                        + "inserir índice dentro do tamanho da lista(" + size 
+                        + "inserir índice dentro do tamanho da lista(" + size
                         + ")");
             } else {
                 return aux.cand;
             }
         }
+    }
+
+    public boolean reside(Candidato u, String sigla) {
+        if (u.getEstado() == sigla) {
+            return true;
+        }
+        return false;
     }
 }

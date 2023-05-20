@@ -31,4 +31,9 @@ public class Candidato {
                 areaInteresse);
         return cand;
     }
+    
+    public String getEstado() {
+        return this.estado;
+    }
+        
 }
