@@ -58,7 +58,7 @@ public class TadCandidato {
     }
 
     public boolean reside(Candidato u, String sigla) {
-        if (u.getEstado() == sigla) {
+        if (u.getEstado().equals(sigla)) {
             return true;
         }
         return false;
