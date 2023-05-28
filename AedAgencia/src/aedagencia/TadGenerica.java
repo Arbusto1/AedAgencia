@@ -22,6 +22,7 @@ public class TadGenerica<T> {
         tail = new Celula(null);
         head.prox = tail;
         tail.ant = head;
+        size = 0;
     }
 
     void add(T item) {
@@ -30,6 +31,7 @@ public class TadGenerica<T> {
         novo.prox = tail;
         tail.ant = novo;
         novo.ant.prox = novo;
+        size++;
 
     }
 
@@ -46,10 +48,33 @@ public class TadGenerica<T> {
             } else {
                 aux.ant.prox = aux.prox;
                 aux.prox.ant = aux.ant;
+                size--;
                 return aux.item;
             }
         }
 
+    }
+    
+    public T get(long i) {
+        if (head == tail) {
+            throw new IllegalArgumentException("A lista está vazia");
+        } else {
+            Celula aux = head.prox;
+            long j = 0;
+
+            while (aux.prox != null && j < i) {
+                aux = aux.prox;
+                j++;
+            }
+
+            if (aux == tail) {
+                throw new IllegalArgumentException("Indice inválido, favor "
+                        + "inserir índice dentro do tamanho da lista(" + size
+                        + ")");
+            } else {
+                return aux.item;
+            }
+        }
     }
 
     public String toString() {
@@ -64,6 +89,10 @@ public class TadGenerica<T> {
         sb.append("]");
         return sb.toString();
 
+    }
+    
+    public long size() {
+        return this.size;
     }
 
 }
