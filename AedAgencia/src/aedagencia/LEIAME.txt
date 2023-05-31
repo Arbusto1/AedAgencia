@@ -1,0 +1,28 @@
+INSTRUÇÕES DE USO DO SOFTWARE
+
+O menu inicial dá ao usuário as opções de acessar o Menu Candidato e o Menu Gerenciamento.
+	- se deseja acessar o Menu Candidato, digite a tecla 2 no teclado;
+	- se deseja acessar o Menu Gerenciamento, digite a tecla 1 no teclado;
+	- se deseja encerrar o programa, digite a tecla 3 no teclado;
+        obs: é preciso digitar uma opção válida, de 1 a 3
+
+O menu Candidato possui as opçoes de CRUD, além de outras duas opções:
+	- para Verificar Potencial Companheiro de um candidato, tecle 1, e insira pelo teclado as entradas solicitadas pelo programa;
+	- para Verificar estado de residencia de um candidatos, tecle 2,e insira pelo teclado as entradas solicitadas pelo programa; 
+	- para Cadastrar um novo Candidato, tecle 3, ,e insira pelo teclado as entradas solicitadas pelo programa. As áreas de interesse solicitadas devem ser escritas em caixa alta;
+	- para Excluir um  Candidato, tecle 4, ,e insira pelo teclado as entradas solicitadas pelo programa.
+	- para Listar todos os candidatos, tecle 5, e insira pelo teclado as entradas solicitadas pelo programa.
+	- para Voltar ao Menu Incial, tecle 6;
+        obs: é preciso digitar uma opção válida, de 1 a 3
+
+O menu Gerenciamento possui as seguintes possíveis opções:
+	- se deseja Inserir/Cadastrar grau de interesse de um candidato, tecle 1;
+	- se deseja Listar o numero e a lista dos nomes de potenciais companheiros de um candidato, tecle 2;
+	- se deseja Listar o nome do candidato com maior numero de potenciais companheiros, tecle 3;
+	- se deseja Listar nome dos candidatos sem companheiros, tecle 4;
+	- se deseja Listar nome de candidatos com interesse em uma determinada area, tecle 5
+	- se deseja Listar nome de candidatos que residem em um determinado estado,  tecle 6;
+	- se deseja Sair, tecle 7;	
+        obs: é preciso digitar uma opção válida, de 1 a 3	
+			
+
