@@ -62,6 +62,26 @@ public class TadCandidato {
         }
     }
 
+    public Candidato excluir(Candidato cand) {
+        if (head.prox == tail) {
+            throw new IllegalArgumentException("Lista Vazia");
+        } else {
+            Celula aux = head.prox;
+            while (aux != tail && !aux.cand.equals(cand)) {
+                aux = aux.prox; // aux++
+            }
+            if (aux == tail) {
+                throw new IllegalArgumentException("Este item não existe");
+            } else {
+                aux.ant.prox = aux.prox;
+                aux.prox.ant = aux.ant;
+                size--;
+                return aux.cand;
+            }
+        }
+
+    }
+
     public static TadGenerica<String> nCompanheiros(TadCandidato tadCandidato, Candidato cand) {
         TadGenerica<String> aux = new TadGenerica();
         boolean potencial = false;
@@ -91,7 +111,7 @@ public class TadCandidato {
                 aux = aux.prox; // aux++
             }
         }
-                return nomes;
+        return nomes;
 
     }
 

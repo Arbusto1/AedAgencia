@@ -21,10 +21,13 @@ public class AedAgencia {
         int opcao = 0;
 
         do {
-            System.out.println("===== MENU PRINCIPAL =====");
-            System.out.println("1- Menu Gerenciamento");
-            System.out.println("2- Menu Candidato");
+            System.out.println("=========================================");
+            System.out.println("*****   AGÊNCIA DE RELACIONAMENTO    ****");
+            System.out.println("(1) Menu Gerenciamento");
+            System.out.println("(2) Menu Candidato");
             System.out.println("(3) Sair");
+            System.out.println("=========================================");
+
             System.out.print("Escolha uma opcao: ");
             opcao = scn.nextInt();
 
@@ -43,7 +46,8 @@ public class AedAgencia {
 
     private static void menuGerencia(TadCandidato tadCandidato) {
         int opcao = 0;
-        System.out.println("**** GERENCIAMENTO ****");
+        System.out.println("=========================================");
+        System.out.println("*******       GERENCIAMENTO       *******");
         System.out.println("(1) Inserir/Cadastrar grau de interesse de um candidato");
         System.out.println("(2) Listar o numero e a lista dos nomes de potenciais companheiros de um candidato");
         System.out.println("(3) Listar o nome do candidato com maior numero de potenciais companheiros");
@@ -51,20 +55,29 @@ public class AedAgencia {
         System.out.println("(5) Listar nome de candidatos com interesse em uma determinada area");
         System.out.println("(6) Listar nome de candidatos que residem em um determinado estado");
         System.out.println("(7) Sair");
+        System.out.println("=========================================");
+
         System.out.print("Escolha uma opcao: ");
         opcao = scn.nextInt();
 
         while ((opcao > 7) || (opcao <= 0)) {
-            System.out.print("Escolha uma opcao valida (1 ate 6): ");
+            System.out.print("Escolha uma opcao valida ( 1 ate 7): ");
             opcao = scn.nextInt();
         }
 
         switch (opcao) {
             case 1:
+
                 System.out.println("Informe o id do candidato(a): ");
                 int idd = scn.nextInt();
                 System.out.println("Informe o grau de interesse desejado: ");
                 int grauu = scn.nextInt();
+                do {
+                    System.out.println("Grau de interesse IVALIDO! ");
+                    System.out.println("Informe o grau de interesse desejado: ");
+                    grauu = scn.nextInt();
+                } while (grauu < 0);
+
                 Candidato cands = tadCandidato.get(idd);
                 cands.setGrauInteresse(grauu);
                 break;
@@ -136,7 +149,7 @@ public class AedAgencia {
                         }
                     }
                 } else {
-                    System.out.println("Area iválida (Escolha entre: ESPORTES, ARTES, MUSICA,"
+                    System.out.println("Area inválida (Escolha entre: ESPORTES, ARTES, MUSICA,"
                             + " CINEMA, TECNOLOGIA, ANIMAIS, GASTRONOMIA, CIÊNCIAS)");
 
                     throw new IllegalArgumentException("Area iválida (Escolha entre: ESPORTES, ARTES, MUSICA,"
@@ -157,13 +170,16 @@ public class AedAgencia {
 
     private static void menu_candidato(TadCandidato tadCandidato) {
         int op = 0;
-        System.out.println("**** MENU CANDIDATO ****");
+        System.out.println("=========================================");
+        System.out.println("*******       MENU CANDIDATO      *******");
         System.out.println("(1) Verificar potencial companheiro");
         System.out.println("(2) Verificar estado de residencia");
         System.out.println("(3) Cadastrar Candidato");
         System.out.println("(4) Excluir Candidato");
-        // System.out.println("(5) Editar Candidato");
-        System.out.println("(5) Sair");
+        System.out.println("(5) Listar todos os Candidatos");
+        System.out.println("(6) Sair");
+        System.out.println("=========================================");
+
         System.out.print("Escolha uma opcao: ");
         op = scn.nextInt();
         while ((op > 7) || (op <= 0)) {
@@ -210,12 +226,40 @@ public class AedAgencia {
                 }
                 break;
             case 3:
-                //Tad.candidato.cadastro():
+                
+                System.out.println("Informe o nome do candidato:");
+                String nomeC = scn.next();
+                System.out.println("Informe o estado do candidato:");
+                String estadoC = scn.next();
+                System.out.println("Informe o sexo do candidato:");
+                String sexoC = scn.next();
+                System.out.println("Informe o sexo de interesse do candidato:");
+                String sexoInteresseC = scn.next();
+                System.out.println("Em quantas areas o candidato tem interesse?");
+                int qtdAreaInteresseC = scn.nextInt();
+                System.out.println("Informe quais areas o candidato tem interesse");
+                System.out.println("Escolha entre: ESPORTES - ARTES - MUSICA - "
+                        + " CINEMA - TECNOLOGIA - ANIMAIS - GASTRONOMIA - CIÊNCIAS)");
 
+                TadGenerica<String> areaInteresseC = new TadGenerica<>();
+                for (int x = 0; x < qtdAreaInteresseC; x++) {
+                    String areaInteresse = scn.next();
+                    areaInteresseC.add(areaInteresse);
+                }
+                Candidato c = new Candidato(nomeC, estadoC, sexoC, sexoInteresseC, areaInteresseC);
+                tadCandidato.add(c);
                 break;
             case 4:
+                System.out.println("Informe o id do candidato que deseja excluir: ");
+                long idE = scn.nextInt();
+                Candidato candE = tadCandidato.get(idE);
+                tadCandidato.excluir(candE);
 
-              //Tad.candidato.excluir():
+                //Tad.candidato.excluir():
+                break;
+            case 5:
+                System.out.println(tadCandidato.toString());
+
                 break;
         }
     }
@@ -230,18 +274,17 @@ public class AedAgencia {
         TadCandidato lista = new TadCandidato();
         for (int i = 0; i < linhas.size(); i++) {
             String[] v = linhas.get(i).split(",");
-            long id = Long.parseLong(v[0]);
-            String nome = v[1];
-            String estado = v[2];
-            String sexo = v[3];
-            String sexoInteresse = v[4];
-            int NdeAreas = Integer.parseInt(v[5]);
+            String nome = v[0];
+            String estado = v[1];
+            String sexo = v[2];
+            String sexoInteresse = v[3];
+            int NdeAreas = Integer.parseInt(v[4]);
             TadGenerica<String> areaInteresse = new TadGenerica<>();
-            for (int x = 6; x <= NdeAreas + 5; x++) {
+            for (int x = 6; x <= NdeAreas + 4; x++) {
                 areaInteresse.add(v[x]);
             }
 
-            Candidato l = new Candidato(id, nome, estado, sexo, sexoInteresse, areaInteresse);
+            Candidato l = new Candidato(nome, estado, sexo, sexoInteresse, areaInteresse);
             lista.add(l);
         }
         return lista;

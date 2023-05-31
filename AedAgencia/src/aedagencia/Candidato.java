@@ -3,7 +3,7 @@ package aedagencia;
 import java.util.List;
 
 public class Candidato {
-
+    private static int  cont;
     private long id;
     private String nome;
     private String estado;
@@ -15,9 +15,9 @@ public class Candidato {
     private int grauInteresse;
 
     //Construtor de candidato
-    Candidato(long id, String nome, String estado, String sexo, String sexoInteresse, TadGenerica<String> areaInteresse ) {
-
-        this.id = id;
+    Candidato(String nome, String estado, String sexo, String sexoInteresse, TadGenerica<String> areaInteresse ) {
+        cont++;
+        this.id = cont;
         this.nome = nome;
         this.estado = estado;
         this.sexo = sexo;
@@ -29,10 +29,10 @@ public class Candidato {
     }
 
     //cria candidato com as informações pegas em outro arquivo
-    public Candidato criaCand(long id, String nome, String estado, String sexo,
+    public Candidato criaCand(String nome, String estado, String sexo,
             String sexoInteresse, TadGenerica<String> areaInteresse) {
 
-        Candidato cand = new Candidato(id, nome, estado, sexo,sexoInteresse, areaInteresse);
+        Candidato cand = new Candidato(nome, estado, sexo,sexoInteresse, areaInteresse);
         return cand;
     }
     public String getNome() {
