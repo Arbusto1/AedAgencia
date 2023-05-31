@@ -24,6 +24,15 @@ public class TadGenerica<T> {
         tail.ant = head;
         size = 0;
     }
+    void addd(T item) {
+        Celula novo = new Celula(item);
+        novo.ant=head;
+        novo.prox=head.prox;
+        head.prox = novo;
+        novo.prox.ant= novo;
+        size++;
+
+    }
 
     void add(T item) {
         Celula novo = new Celula(item);
@@ -54,7 +63,7 @@ public class TadGenerica<T> {
         }
 
     }
-    
+
     public T get(long i) {
         if (head == tail) {
             throw new IllegalArgumentException("A lista está vazia");
@@ -78,21 +87,22 @@ public class TadGenerica<T> {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("[ ");
+        StringBuilder sb = new StringBuilder("\n");
         Celula aux = head.prox;
 
         while (aux != tail) {
+            sb.append("- ");
             sb.append(aux.item);
-            sb.append(" ");
+            sb.append(" \n");
             aux = aux.prox;
         }
-        sb.append("]");
         return sb.toString();
 
     }
-    
+
     public long size() {
         return this.size;
     }
 
+   
 }
